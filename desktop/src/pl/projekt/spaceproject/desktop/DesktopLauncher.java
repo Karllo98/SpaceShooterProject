@@ -5,15 +5,14 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import pl.projekt.spaceproject.SpaceGame;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+    public static void main(String[] arg) {
+        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-		config.title = SpaceGame.TITLE;
-		config.width = SpaceGame.WIDTH;
-		config.height = SpaceGame.HEIGHT;
+        config.title = SpaceGame.TITLE;
+        config.width = SpaceGame.WIDTH;
+        config.height = SpaceGame.HEIGHT;
+        config.resizable = false;
 
-		config.resizable = false;
-
-		new LwjglApplication(new SpaceGame(), config);
-	}
+        new LwjglApplication(new SpaceGame(), config);
+    }
 }

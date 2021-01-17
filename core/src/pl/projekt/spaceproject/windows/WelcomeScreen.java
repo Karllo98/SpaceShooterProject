@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
 import pl.projekt.spaceproject.SpaceGame;
 
-public class WelcomeScreen extends ParentScreen{
+public class WelcomeScreen extends ParentScreen {
 
     private Texture welcomeTexture;
 
@@ -12,7 +12,7 @@ public class WelcomeScreen extends ParentScreen{
         super(game);
         initialize();
 
-        Timer.schedule(new Timer.Task(){
+        Timer.schedule(new Timer.Task() {
 
             @Override
             public void run() {
@@ -28,9 +28,8 @@ public class WelcomeScreen extends ParentScreen{
     @Override
     public void render(float delta) {
         super.render(delta);
-
         spriteBatch.begin();
-        spriteBatch.draw(welcomeTexture,0,0);
+        spriteBatch.draw(welcomeTexture, 0, 0);
         spriteBatch.end();
     }
 }
