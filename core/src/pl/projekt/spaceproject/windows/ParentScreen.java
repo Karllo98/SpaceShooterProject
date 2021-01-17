@@ -33,9 +33,29 @@ public abstract class ParentScreen implements Screen {
         camera.update();
     }
 
+    @Override
+    public void show() {
+
+    }
+
     private void clearScreen() {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
+
+    @Override
+    public void pause() {
+        game.setPaused(true);
+    }
+
+    @Override
+    public void resume() {
+        game.setPaused(false);
+    }
+
+    @Override
+    public void dispose() {
+        game.dispose();
     }
 }
 

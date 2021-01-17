@@ -11,6 +11,7 @@ public class SpaceGame extends Game {
 	public final static String TITLE = "Space Invaders - Shooter Project";
 	public final static int WIDTH = 600;
 	public final static int HEIGHT = 800;
+	private boolean paused;
 
 	SpriteBatch batch;
 	Texture img;
@@ -34,5 +35,13 @@ public class SpaceGame extends Game {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+	}
+
+	public boolean isPaused() {
+		return paused;
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
 	}
 }
