@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import pl.projekt.spaceproject.SpaceGame;
 
 public abstract class ParentScreen implements Screen {
@@ -18,6 +19,9 @@ public abstract class ParentScreen implements Screen {
     public ParentScreen(SpaceGame game) {
         this.game = game;
         createCamera();
+        stage = new Stage(new FitViewport(SpaceGame.WIDTH, SpaceGame.HEIGHT, camera));
+        spriteBatch = new SpriteBatch();
+        Gdx.input.setInputProcessor(stage);
     }
 
     private void createCamera() {
@@ -56,6 +60,11 @@ public abstract class ParentScreen implements Screen {
     @Override
     public void dispose() {
         game.dispose();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
     }
 }
 
