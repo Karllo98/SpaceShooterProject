@@ -13,10 +13,15 @@ public class SpaceGame extends Game {
     public final static int WIDTH = 600;
     public final static int HEIGHT = 800;
     private boolean paused;
+    private int points;
 
     @Override
     public void create() {
         setScreen(new WelcomeScreen(this));
+    }
+
+    public void addPoint(){ //not tested
+        ++points;
     }
 
     public boolean isPaused() {
@@ -25,5 +30,9 @@ public class SpaceGame extends Game {
 
     public void setPaused(boolean paused) {
         this.paused = paused;
+    }
+
+    public int getPoints() {
+        return points;
     }
 }
