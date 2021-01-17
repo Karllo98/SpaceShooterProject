@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import pl.projekt.spaceproject.windows.WelcomeScreen;
 
 public class SpaceGame extends Game {
 
@@ -15,7 +16,7 @@ public class SpaceGame extends Game {
 	
 	@Override
 	public void create () {
-
+		setScreen(new WelcomeScreen(this));
 	}
 
 	public boolean isPaused() {

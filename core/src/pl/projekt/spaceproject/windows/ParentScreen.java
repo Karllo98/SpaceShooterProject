@@ -28,13 +28,13 @@ public abstract class ParentScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SpaceGame.WIDTH, SpaceGame.HEIGHT);
         camera.update();
-        spriteBatch.setProjectionMatrix(camera.combined);
     }
 
     @Override
     public void render(float delta) {
         clearScreen();
         camera.update();
+        spriteBatch.setProjectionMatrix(camera.combined);
     }
 
     @Override
@@ -64,6 +64,11 @@ public abstract class ParentScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void hide() {
 
     }
 }
