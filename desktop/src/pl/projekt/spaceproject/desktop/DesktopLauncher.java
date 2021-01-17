@@ -7,6 +7,13 @@ import pl.projekt.spaceproject.SpaceGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
+		config.title = SpaceGame.TITLE;
+		config.width = SpaceGame.WIDTH;
+		config.height = SpaceGame.HEIGHT;
+
+		config.resizable = false;
+
 		new LwjglApplication(new SpaceGame(), config);
 	}
 }
