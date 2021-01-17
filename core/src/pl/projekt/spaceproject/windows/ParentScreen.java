@@ -1,6 +1,8 @@
 package pl.projekt.spaceproject.windows;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -13,16 +15,27 @@ public abstract class ParentScreen implements Screen {
     protected Stage stage;
     protected SpriteBatch spriteBatch;
 
-    public ParentScreen(SpaceGame game){
-
+    public ParentScreen(SpaceGame game) {
         this.game = game;
         createCamera();
-
     }
 
-    private void createCamera(){
+    private void createCamera() {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SpaceGame.WIDTH, SpaceGame.HEIGHT);
         camera.update();
+        spriteBatch.setProjectionMatrix(camera.combined);
+    }
+
+    @Override
+    public void render(float delta) {
+        clearScreen();
+        camera.update();
+    }
+
+    private void clearScreen() {
+        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 }
+
