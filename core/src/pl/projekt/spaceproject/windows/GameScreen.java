@@ -3,16 +3,16 @@ package pl.projekt.spaceproject.windows;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.projekt.spaceproject.SpaceGame;
+import pl.projekt.spaceproject.controllers.BoostsController;
 import pl.projekt.spaceproject.controllers.MeteorsController;
-import pl.projekt.spaceproject.gamecomponents.Meteor;
 import pl.projekt.spaceproject.gamecomponents.SpaceShip;
 
 public class GameScreen extends ParentScreen {
 
     private SpaceShip ship;
     private Image backgroundImage;
-//    private Meteor meteor; //temporary
     private MeteorsController meteorsController;
+    private BoostsController boostsController;
 
     public GameScreen(SpaceGame game) {
         super(game);
@@ -23,17 +23,16 @@ public class GameScreen extends ParentScreen {
         initBackground();
         initShip();
         initMeteorsController();
+        initBoostController();
     }
 
     private void initMeteorsController() {
         meteorsController = new MeteorsController(game, stage);
     }
 
-//    private void initMeteors() {
-//        meteor = new Meteor();
-//        stage.addActor(meteor);
-//        meteor.fall();
-//    }
+    private void initBoostController() {
+        boostsController = new BoostsController(game, stage);
+    }
 
     private void initBackground() {
         backgroundImage = new Image(new Texture("background.jpg"));

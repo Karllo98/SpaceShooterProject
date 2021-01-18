@@ -6,15 +6,14 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.projekt.spaceproject.SpaceGame;
 
-public class Meteor extends Image {
+public class Boost extends Image {
 
-    public final static String METEOR = "meteor.png";
+    public final static String METEOR = "boost.png";
     private final static int WIDTH = 40;
     private final static int HEIGHT = 40;
     private final SpaceGame game;
 
-
-    public Meteor(int x, int y, SpaceGame game) {
+    public Boost(int x, int y, SpaceGame game) {
         super(new Texture(METEOR));
         this.game = game;
         setOrigin(WIDTH / 2, HEIGHT / 2);
@@ -24,18 +23,11 @@ public class Meteor extends Image {
 
     public void fall(){
         //simple movement
-        Action first = Actions.parallel(Actions.moveBy(0,-400, 10),
+        Action first = Actions.parallel(Actions.moveBy(0,-600, 10),
                 Actions.rotateBy(360, 10));
 
-        Action second = Actions.parallel(Actions.moveBy(0,-400, 10),
+        Action second = Actions.parallel(Actions.moveBy(0,-600, 10),
                 Actions.rotateBy(-360, 10));
-
-//        Action runAction = Actions.run(new Runnable() {
-//            @Override
-//            public void run() {
-//                Meteor.this.remove();
-//            }
-//        });
 
         addAction(Actions.sequence(first, second));
 
