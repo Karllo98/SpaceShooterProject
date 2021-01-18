@@ -1,6 +1,10 @@
 package pl.projekt.spaceproject.gamecomponents;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class SpaceShip extends Image {
@@ -16,5 +20,15 @@ public class SpaceShip extends Image {
         setOrigin(WIDTH / 2, HEIGHT / 2);
         setSize(WIDTH, HEIGHT);
         setPosition(STARTINGX, STARTINGY);
+    }
+
+    public void moveLeft() {
+        Action moveAction = Actions.moveBy(-5, 0);
+        addAction(moveAction);
+    }
+
+    public void moveRight(){
+        Action moveAction = Actions.moveBy(5, 0);
+        addAction(moveAction);
     }
 }

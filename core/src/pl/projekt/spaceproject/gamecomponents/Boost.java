@@ -21,13 +21,13 @@ public class Boost extends Image {
         setPosition(x, y);
     }
 
-    public void fall(){
+    public void fall() {
         //simple movement
-        Action first = Actions.parallel(Actions.moveBy(0,-600, 10),
-                Actions.rotateBy(360, 10));
-
-        Action second = Actions.parallel(Actions.moveBy(0,-600, 10),
+        Action first = Actions.parallel(Actions.moveBy(0, -600, 10),
                 Actions.rotateBy(-360, 10));
+
+        Action second = Actions.parallel(Actions.moveBy(0, -600, 10),
+                Actions.rotateBy(360, 10));
 
         addAction(Actions.sequence(first, second));
 

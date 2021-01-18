@@ -1,5 +1,7 @@
 package pl.projekt.spaceproject.windows;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.projekt.spaceproject.SpaceGame;
@@ -24,6 +26,15 @@ public class GameScreen extends ParentScreen {
         initShip();
         initMeteorsController();
         initBoostController();
+    }
+
+    private void shipMovement(){
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            ship.moveLeft();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            ship.moveRight();
+        }
     }
 
     private void initMeteorsController() {
@@ -55,5 +66,6 @@ public class GameScreen extends ParentScreen {
 
     private void update() {
         stage.act();
+        shipMovement();
     }
 }

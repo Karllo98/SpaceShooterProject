@@ -4,20 +4,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.gamecomponents.Boost;
-import pl.projekt.spaceproject.gamecomponents.Meteor;
 
 public class BoostsController {
 
-    public BoostsController(SpaceGame game, Stage stage){
-        initialize(game, stage);
-    }
-
-    private void initialize(SpaceGame game, Stage stage) {
+    public BoostsController(SpaceGame game, Stage stage) {
         deployBoosts(game, stage);
     }
 
     private void deployBoosts(SpaceGame game, Stage stage) {
-
         int amount = 3;
         for (int i = 1; i <= amount; ++i) {
             randomXPosition();
@@ -31,7 +25,8 @@ public class BoostsController {
     private int randomXPosition() {
         return MathUtils.random(0, SpaceGame.WIDTH - 40);
     }
+
     private int randomYPosition() {
-        return MathUtils.random(SpaceGame.HEIGHT, 1000);
+        return MathUtils.random(SpaceGame.HEIGHT, 1500);
     }
 }

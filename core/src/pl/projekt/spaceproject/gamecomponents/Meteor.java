@@ -13,7 +13,6 @@ public class Meteor extends Image {
     private final static int HEIGHT = 40;
     private final SpaceGame game;
 
-
     public Meteor(int x, int y, SpaceGame game) {
         super(new Texture(METEOR));
         this.game = game;
@@ -22,22 +21,14 @@ public class Meteor extends Image {
         setPosition(x, y);
     }
 
-    public void fall(){
+    public void fall() {
         //simple movement
-        Action first = Actions.parallel(Actions.moveBy(0,-400, 10),
+        Action first = Actions.parallel(Actions.moveBy(0, -400, 10),
                 Actions.rotateBy(360, 10));
 
-        Action second = Actions.parallel(Actions.moveBy(0,-400, 10),
+        Action second = Actions.parallel(Actions.moveBy(0, -400, 10),
                 Actions.rotateBy(-360, 10));
 
-//        Action runAction = Actions.run(new Runnable() {
-//            @Override
-//            public void run() {
-//                Meteor.this.remove();
-//            }
-//        });
-
         addAction(Actions.sequence(first, second));
-
     }
 }
