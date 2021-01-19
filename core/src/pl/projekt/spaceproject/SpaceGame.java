@@ -35,9 +35,4 @@ public class SpaceGame extends Game {
     public int getPoints() {
         return points;
     }
-
-
-    public static int getWIDTH() {
-        return WIDTH;
-    }
 }

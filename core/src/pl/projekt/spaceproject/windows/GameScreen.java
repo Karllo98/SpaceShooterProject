@@ -28,11 +28,13 @@ public class GameScreen extends ParentScreen {
         initBoostController();
     }
 
-    private void shipMovement(){
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+    private void shipMovement() {
+        float leftBoundary = 0;
+        float rightBoundary = SpaceGame.WIDTH - ship.getWidth();
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && ship.getX() > leftBoundary) {
             ship.moveLeft();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && ship.getX() < rightBoundary) {
             ship.moveRight();
         }
     }
