@@ -6,15 +6,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.controllers.BoostsController;
+import pl.projekt.spaceproject.controllers.BulletsController;
 import pl.projekt.spaceproject.controllers.MeteorsController;
 import pl.projekt.spaceproject.gamecomponents.SpaceShip;
 
 public class GameScreen extends ParentScreen {
 
+    private float counter;
     private SpaceShip ship;
     private Image backgroundImage;
     private MeteorsController meteorsController;
     private BoostsController boostsController;
+    private BulletsController bulletsController;
 
     public GameScreen(SpaceGame game) {
         super(game);
@@ -28,6 +31,14 @@ public class GameScreen extends ParentScreen {
         initBoostController();
     }
 
+    private void bulletMovement() {
+        counter += Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && counter > 0.25){
+            initBulletController();
+            counter = 0;
+        }
+    }
+
     private void shipMovement() {
         float leftBoundary = 0;
         float rightBoundary = SpaceGame.WIDTH - ship.getWidth();
@@ -39,6 +50,8 @@ public class GameScreen extends ParentScreen {
         }
     }
 
+    private void initBulletController() {bulletsController = new BulletsController(game, stage, ship);
+    }
     private void initMeteorsController() {
         meteorsController = new MeteorsController(game, stage);
     }
@@ -69,5 +82,8 @@ public class GameScreen extends ParentScreen {
     private void update() {
         stage.act();
         shipMovement();
+        bulletMovement();
     }
+
+
 }
