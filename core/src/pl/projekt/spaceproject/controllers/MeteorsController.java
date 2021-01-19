@@ -27,6 +27,6 @@ public class MeteorsController {
     }
 
     private int randomYPosition() {
-        return MathUtils.random(SpaceGame.HEIGHT, 1000);
+        return MathUtils.random(SpaceGame.HEIGHT, 1500);
     }
 }
