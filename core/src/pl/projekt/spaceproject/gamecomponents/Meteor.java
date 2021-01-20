@@ -1,6 +1,8 @@
 package pl.projekt.spaceproject.gamecomponents;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -12,6 +14,7 @@ public class Meteor extends Image {
     private final static int WIDTH = 40;
     private final static int HEIGHT = 40;
     private final SpaceGame game;
+    private Rectangle bounds = new Rectangle((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight());
 
     public Meteor(int x, int y, SpaceGame game) {
         super(new Texture(METEOR));
@@ -30,5 +33,14 @@ public class Meteor extends Image {
                 Actions.rotateBy(-360, 10));
 
         addAction(Actions.sequence(first, second));
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    protected void positionChanged() {
+        bounds.setX((int)getX());
+        bounds.setY((int)getY());
     }
 }

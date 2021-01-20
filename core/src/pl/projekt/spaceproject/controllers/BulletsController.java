@@ -1,7 +1,5 @@
 package pl.projekt.spaceproject.controllers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.gamecomponents.Bullet;
@@ -14,8 +12,9 @@ public class BulletsController {
     }
 
     private void shootBullet(SpaceGame game, Stage stage, SpaceShip ship) {
-        Bullet bullet = new Bullet(ship.getX(), game);
+        Bullet bullet = new Bullet(ship.getX() + ship.getWidth() / 2, game);
         stage.addActor(bullet);
+        System.out.println(bullet.getBounds());
         bullet.fly();
     }
 }
