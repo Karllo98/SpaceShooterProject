@@ -2,6 +2,7 @@ package pl.projekt.spaceproject.windows;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -43,8 +44,9 @@ public class GameScreen extends ParentScreen {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = new BitmapFont();
         pointsLabel = new Label("", labelStyle);
-        pointsLabel.setX(20);
-        pointsLabel.setY(750);
+        pointsLabel.setPosition(20,775);
+        pointsLabel.setColor(Color.YELLOW);
+        pointsLabel.setFontScale(2);
         stage.addActor(pointsLabel);
     }
 
@@ -136,7 +138,7 @@ public class GameScreen extends ParentScreen {
 
     private void update() {
         stage.act();
-        pointsLabel.setText("Points: " + game.getPoints());
+        pointsLabel.setText(game.getPoints());
         shipMovement();
         bulletMovement();
         meteorsCollision();
