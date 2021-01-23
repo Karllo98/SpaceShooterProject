@@ -3,8 +3,10 @@ package pl.projekt.spaceproject.windows;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.controllers.BoostsController;
 import pl.projekt.spaceproject.controllers.BulletsController;
@@ -22,6 +24,7 @@ public class GameScreen extends ParentScreen {
     private MeteorsController meteorsController;
     private BoostsController boostsController;
     private BulletsController bulletsController;
+    private Label pointsLabel;
 
     public GameScreen(SpaceGame game) {
         super(game);
@@ -33,6 +36,16 @@ public class GameScreen extends ParentScreen {
         initShip();
         initMeteorsController();
         initBoostController();
+        initPointsLabel();
+    }
+
+    private void initPointsLabel() {
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = new BitmapFont();
+        pointsLabel = new Label("", labelStyle);
+        pointsLabel.setX(20);
+        pointsLabel.setY(750);
+        stage.addActor(pointsLabel);
     }
 
     private void boostsCollision() {
@@ -43,7 +56,8 @@ public class GameScreen extends ParentScreen {
                 for (Actor actorB:stage.getActors()){
                     if (actorB instanceof Boost) {
                         Boost boost  = (Boost) actorB;
-                        if(bullet.getBounds().overlaps(boost.getBounds())){
+                        if(bullet.getBounds().overlaps(boost.getBounds()) && bullet.getBounds().getY() < 800){
+                            bullet.remove();
                             boost.remove();
                             game.addPoint();
                         }
@@ -61,7 +75,8 @@ public class GameScreen extends ParentScreen {
                 for (Actor actorB:stage.getActors()){
                     if (actorB instanceof Meteor) {
                         Meteor meteor  = (Meteor) actorB;
-                        if(bullet.getBounds().overlaps(meteor.getBounds())){
+                        if(bullet.getBounds().overlaps(meteor.getBounds()) && bullet.getBounds().getY() < 800){
+                            bullet.remove();
                             meteor.remove();
                             game.addPoint();
                         }
@@ -121,11 +136,10 @@ public class GameScreen extends ParentScreen {
 
     private void update() {
         stage.act();
+        pointsLabel.setText("Points: " + game.getPoints());
         shipMovement();
         bulletMovement();
         meteorsCollision();
         boostsCollision();
     }
-
-
 }

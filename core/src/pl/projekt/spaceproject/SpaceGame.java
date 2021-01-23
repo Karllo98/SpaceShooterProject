@@ -20,7 +20,7 @@ public class SpaceGame extends Game {
         setScreen(new WelcomeScreen(this));
     }
 
-    public void addPoint() { //not tested
+    public void addPoint() {
         ++points;
     }
 
