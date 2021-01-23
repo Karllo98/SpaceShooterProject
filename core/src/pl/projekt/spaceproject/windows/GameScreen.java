@@ -9,6 +9,7 @@ import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.controllers.BoostsController;
 import pl.projekt.spaceproject.controllers.BulletsController;
 import pl.projekt.spaceproject.controllers.MeteorsController;
+import pl.projekt.spaceproject.gamecomponents.Boost;
 import pl.projekt.spaceproject.gamecomponents.Bullet;
 import pl.projekt.spaceproject.gamecomponents.Meteor;
 import pl.projekt.spaceproject.gamecomponents.SpaceShip;
@@ -32,6 +33,42 @@ public class GameScreen extends ParentScreen {
         initShip();
         initMeteorsController();
         initBoostController();
+    }
+
+    private void boostsCollision() {
+        for (int i=0; i < stage.getActors().size; i++){
+            Actor actorA = stage.getActors().get(i);
+            if (actorA instanceof Bullet) {
+                Bullet bullet = (Bullet) actorA;
+                for (Actor actorB:stage.getActors()){
+                    if (actorB instanceof Boost) {
+                        Boost boost  = (Boost) actorB;
+                        if(bullet.getBounds().overlaps(boost.getBounds())){
+                            boost.remove();
+                            game.addPoint();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void meteorsCollision() {
+        for (int i=0; i < stage.getActors().size; i++){
+            Actor actorA = stage.getActors().get(i);
+            if (actorA instanceof Bullet) {
+                Bullet bullet = (Bullet) actorA;
+                for (Actor actorB:stage.getActors()){
+                    if (actorB instanceof Meteor) {
+                        Meteor meteor  = (Meteor) actorB;
+                        if(bullet.getBounds().overlaps(meteor.getBounds())){
+                            meteor.remove();
+                            game.addPoint();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void bulletMovement() {
@@ -84,73 +121,11 @@ public class GameScreen extends ParentScreen {
 
     private void update() {
         stage.act();
-
-        for (int i=0; i < stage.getActors().size; i++){
-            Actor actorA = stage.getActors().get(i);
-            if (actorA instanceof Bullet) {
-                Bullet bullet = (Bullet) actorA;
-                for (Actor actorB:stage.getActors()){
-                    if (actorB instanceof Meteor) {
-                        Meteor meteor  = (Meteor) actorB;
-                        if(bullet.getBounds().overlaps(meteor.getBounds())){
-                            meteor.remove();
-                            game.addPoint();
-                        }
-                    }
-                }
-            }
-        }
-
-//        Bullet bullet = null;
-//        Meteor meteor = null;
-
-//        for (int i = meteorsController.meteors.size-1; i >= 0; i--){
-//            meteor = meteorsController.meteors.get(i);
-//            meteor.getBounds().y;
-//        }
-
-//        for (Actor actor:stage.getActors()){
-//            if (actor instanceof Bullet) {
-//                bullet  = (Bullet) actor;
-//            }
-//        }
-//
-//        for (Actor actor:stage.getActors()){
-//            if (actor instanceof Meteor) {
-//                meteor  = (Meteor) actor;
-//            }
-//        }
-//
-//        assert meteor != null;
-//        assert bullet != null;
-//        if(meteor.getBounds().overlaps(bullet.getBounds()))
-//            System.out.println("kolizja");
-
-//        for (Actor actorA:stage.getActors()) {
-//            for (Actor actorB:stage.getActors()){
-//                if (actorB instanceof Bullet) {
-//                    bullet  = (Bullet) actorB;
-//                }
-//                if (actorA instanceof Meteor) {
-//                    meteor = (Meteor) actorA;
-//                }
-//                assert meteor != null;
-//                assert bullet != null;
-//                if(meteor.getBounds().overlaps(bullet.getBounds())){
-//                    System.out.println("kolizja");
-//                }
-//            }
-//        }
-
-
-//         {
-//            if (actorB instanceof Meteor) {
-//                float b = ((Meteor) actorB).getBounds().y;
-//                System.out.println(b);
-//
-//            }
-//        }
         shipMovement();
         bulletMovement();
+        meteorsCollision();
+        boostsCollision();
     }
+
+
 }
