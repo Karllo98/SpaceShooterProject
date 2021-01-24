@@ -57,7 +57,7 @@ public class GameScreen extends ParentScreen {
             if (actor instanceof Meteor) {
                 Meteor meteor = (Meteor) actor;
                 if (meteor.getY()<=0){
-                    game.setScreen(new MenuScreen(game));
+                    game.setScreen(new LossScreen(game));
                 }
             }
         }

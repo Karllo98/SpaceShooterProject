@@ -19,7 +19,7 @@ public class Bullet extends Image {
     public Bullet(float x, SpaceGame game) {
         super(new Texture(BULLET));
         this.game = game;
-        setOrigin(WIDTH / 2, HEIGHT / 2);
+        setOrigin(WIDTH / 2f, HEIGHT / 2f);
         setSize(WIDTH, HEIGHT);
         setPosition(x, YPOSITION);
     }

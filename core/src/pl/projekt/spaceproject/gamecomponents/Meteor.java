@@ -18,7 +18,7 @@ public class Meteor extends Image {
     public Meteor(int x, int y, SpaceGame game) {
         super(new Texture(METEOR));
         this.game = game;
-        setOrigin(WIDTH / 2, HEIGHT / 2);
+        setOrigin(WIDTH / 2f, HEIGHT / 2f);
         setSize(WIDTH, HEIGHT);
         setPosition(x, y);
     }
