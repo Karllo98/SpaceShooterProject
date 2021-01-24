@@ -1,7 +1,6 @@
 package pl.projekt.spaceproject.gamecomponents;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -25,14 +24,23 @@ public class Meteor extends Image {
     }
 
     public void fall() {
-        //simple movement
-        Action first = Actions.parallel(Actions.moveBy(0, -400, 10),
-                Actions.rotateBy(360, 10));
+        if(bounds.getY()<=0){
+            game.setStatus(SpaceGame.gameStatus.FINISHEDLOSS);
+        }
 
-        Action second = Actions.parallel(Actions.moveBy(0, -400, 10),
-                Actions.rotateBy(-360, 10));
+        if(game.getStatus()== SpaceGame.gameStatus.RUNNING){
+            //simple movement
+            Action first = Actions.parallel(Actions.moveBy(0, -400, 10),
+                    Actions.rotateBy(360, 10));
 
-        addAction(Actions.sequence(first, second));
+            Action second = Actions.parallel(Actions.moveBy(0, -400, 10),
+                    Actions.rotateBy(-360, 10));
+
+            Action third = Actions.parallel(Actions.moveBy(0, -400, 10),
+                    Actions.rotateBy(360, 10));
+
+            addAction(Actions.sequence(first, second, third));
+        }
     }
 
     public Rectangle getBounds() {

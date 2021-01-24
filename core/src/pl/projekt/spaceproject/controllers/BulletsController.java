@@ -14,7 +14,6 @@ public class BulletsController {
     private void shootBullet(SpaceGame game, Stage stage, SpaceShip ship) {
         Bullet bullet = new Bullet(ship.getX() + ship.getWidth() / 2, game);
         stage.addActor(bullet);
-        System.out.println(bullet.getBounds());
         bullet.fly();
     }
 }

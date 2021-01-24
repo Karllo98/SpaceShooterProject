@@ -14,6 +14,9 @@ public class SpaceGame extends Game {
     public final static int HEIGHT = 800;
     private boolean paused;
     private int points;
+    private gameStatus status;
+    public enum gameStatus{NOTRUNNING, RUNNING, FINISHEDWON, FINISHEDLOSS}
+
 
     @Override
     public void create() {
@@ -35,4 +38,13 @@ public class SpaceGame extends Game {
     public int getPoints() {
         return points;
     }
+
+    public gameStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(gameStatus status) {
+        this.status = status;
+    }
+
 }
