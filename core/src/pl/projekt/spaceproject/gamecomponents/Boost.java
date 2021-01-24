@@ -25,13 +25,18 @@ public class Boost extends Image {
 
     public void fall() {
         //simple movement
-        Action first = Actions.parallel(Actions.moveBy(0, -600, 10),
-                Actions.rotateBy(-360, 10));
+        Action first = Actions.rotateBy(0, 3);
 
-        Action second = Actions.parallel(Actions.moveBy(0, -600, 10),
-                Actions.rotateBy(360, 10));
+        Action second = Actions.parallel(Actions.moveBy(0, -1200, 6),
+                Actions.rotateBy(-360, 6));
 
-        addAction(Actions.sequence(first, second));
+        Action third = Actions.parallel(Actions.moveBy(0, -1200, 6),
+                Actions.rotateBy(360, 6));
+
+        Action fourth = Actions.parallel(Actions.moveBy(0, -1200, 6),
+                Actions.rotateBy(360, 6));
+
+        addAction(Actions.sequence(first, second, third, fourth));
 
     }
 

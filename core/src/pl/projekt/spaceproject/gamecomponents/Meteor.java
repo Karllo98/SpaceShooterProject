@@ -24,23 +24,20 @@ public class Meteor extends Image {
     }
 
     public void fall() {
-        if(bounds.getY()<=0){
-            game.setStatus(SpaceGame.gameStatus.FINISHEDLOSS);
-        }
+        //simple movement
+        Action first = Actions.parallel(Actions.moveBy(0, -400, 5),
+                Actions.rotateBy(360, 5));
 
-        if(game.getStatus()== SpaceGame.gameStatus.RUNNING){
-            //simple movement
-            Action first = Actions.parallel(Actions.moveBy(0, -400, 10),
-                    Actions.rotateBy(360, 10));
+        Action second = Actions.parallel(Actions.moveBy(0, -400, 5),
+                Actions.rotateBy(-360, 5));
 
-            Action second = Actions.parallel(Actions.moveBy(0, -400, 10),
-                    Actions.rotateBy(-360, 10));
+        Action third = Actions.parallel(Actions.moveBy(0, -400, 5),
+                Actions.rotateBy(180, 5));
 
-            Action third = Actions.parallel(Actions.moveBy(0, -400, 10),
-                    Actions.rotateBy(360, 10));
+        Action fourth = Actions.parallel(Actions.moveBy(0, -400, 5),
+                Actions.rotateBy(-180, 5));
 
-            addAction(Actions.sequence(first, second, third));
-        }
+        addAction(Actions.sequence(first, second, third, fourth));
     }
 
     public Rectangle getBounds() {

@@ -50,6 +50,19 @@ public class GameScreen extends ParentScreen {
         stage.addActor(pointsLabel);
     }
 
+    private void referee() {
+        for (int i=0; i < stage.getActors().size; i++){
+            Actor actor = stage.getActors().get(i);
+
+            if (actor instanceof Meteor) {
+                Meteor meteor = (Meteor) actor;
+                if (meteor.getY()<=0){
+                    game.setScreen(new MenuScreen(game));
+                }
+            }
+        }
+    }
+
     private void boostsCollision() {
         for (int i=0; i < stage.getActors().size; i++){
             Actor actorA = stage.getActors().get(i);
@@ -61,7 +74,7 @@ public class GameScreen extends ParentScreen {
                         if(bullet.getBounds().overlaps(boost.getBounds()) && bullet.getBounds().getY() < 800){
                             bullet.remove();
                             boost.remove();
-                            game.addPoint();
+                            game.addPoint(5);
                         }
                     }
                 }
@@ -80,7 +93,7 @@ public class GameScreen extends ParentScreen {
                         if(bullet.getBounds().overlaps(meteor.getBounds()) && bullet.getBounds().getY() < 800){
                             bullet.remove();
                             meteor.remove();
-                            game.addPoint();
+                            game.addPoint(1);
                         }
                     }
                 }
@@ -110,11 +123,11 @@ public class GameScreen extends ParentScreen {
     private void initBulletController() {bulletsController = new BulletsController(game, stage, ship);
     }
     private void initMeteorsController() {
-        meteorsController = new MeteorsController(game, stage);
+        meteorsController = new MeteorsController(game, stage, 20);
     }
 
     private void initBoostController() {
-        boostsController = new BoostsController(game, stage);
+        boostsController = new BoostsController(game, stage, 5);
     }
 
     private void initBackground() {
@@ -143,5 +156,6 @@ public class GameScreen extends ParentScreen {
         bulletMovement();
         meteorsCollision();
         boostsCollision();
+        referee();
     }
 }

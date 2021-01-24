@@ -2,9 +2,6 @@ package pl.projekt.spaceproject;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.projekt.spaceproject.windows.WelcomeScreen;
 
 public class SpaceGame extends Game {
@@ -14,17 +11,17 @@ public class SpaceGame extends Game {
     public final static int HEIGHT = 800;
     private boolean paused;
     private int points;
-    private gameStatus status;
-    public enum gameStatus{NOTRUNNING, RUNNING, FINISHEDWON, FINISHEDLOSS}
-
 
     @Override
     public void create() {
         setScreen(new WelcomeScreen(this));
     }
 
-    public void addPoint() {
-        ++points;
+    public void addPoint(int value) {
+        points +=value;
+    }
+
+    public void setPaused() {
     }
 
     public boolean isPaused() {
@@ -37,14 +34,6 @@ public class SpaceGame extends Game {
 
     public int getPoints() {
         return points;
-    }
-
-    public gameStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(gameStatus status) {
-        this.status = status;
     }
 
 }

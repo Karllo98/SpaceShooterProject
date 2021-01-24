@@ -2,17 +2,17 @@ package pl.projekt.spaceproject.controllers;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import jdk.dynalink.NamedOperation;
 import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.gamecomponents.Boost;
 
 public class BoostsController {
 
-    public BoostsController(SpaceGame game, Stage stage) {
-        deployBoosts(game, stage);
+    public BoostsController(SpaceGame game, Stage stage, int amount) {
+        deployBoosts(game, stage, amount);
     }
 
-    private void deployBoosts(SpaceGame game, Stage stage) {
-        int amount = 3;
+    private void deployBoosts(SpaceGame game, Stage stage, int amount) {
         for (int i = 1; i <= amount; ++i) {
             randomXPosition();
             randomYPosition();
@@ -27,6 +27,6 @@ public class BoostsController {
     }
 
     private int randomYPosition() {
-        return MathUtils.random(SpaceGame.HEIGHT, 1500);
+        return MathUtils.random(SpaceGame.HEIGHT + 300, 3000);
     }
 }
