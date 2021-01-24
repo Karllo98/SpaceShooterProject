@@ -21,6 +21,10 @@ public class SpaceGame extends Game {
         points +=value;
     }
 
+    public void resetPoints() {
+        points = 0;
+    }
+
     public void setPaused() {
     }
 
@@ -35,5 +39,4 @@ public class SpaceGame extends Game {
     public int getPoints() {
         return points;
     }
-
 }
