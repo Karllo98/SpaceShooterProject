@@ -6,7 +6,7 @@ import pl.projekt.spaceproject.windows.WelcomeScreen;
 
 public class SpaceGame extends Game {
 
-    public final static String TITLE = "Space Invaders - Shooter Project";
+    public final static String TITLE = "Space Project";
     public final static int WIDTH = 600;
     public final static int HEIGHT = 800;
     private boolean paused;
