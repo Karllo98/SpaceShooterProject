@@ -11,6 +11,7 @@ public class SpaceGame extends Game {
     public final static int HEIGHT = 800;
     private boolean paused;
     private int points;
+    private boolean meteorsMode = true;
 
     @Override
     public void create() {
@@ -30,6 +31,14 @@ public class SpaceGame extends Game {
 
     public boolean isPaused() {
         return paused;
+    }
+
+    public boolean getMode() {
+        return meteorsMode;
+    }
+
+    public void setMode(boolean meteorsMode) {
+        this.meteorsMode = meteorsMode;
     }
 
     public void setPaused(boolean paused) {

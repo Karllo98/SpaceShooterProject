@@ -22,7 +22,7 @@ public class WelcomeScreen extends ParentScreen {
     }
 
     private void initialize() {
-        welcomeTexture = new Texture("badlogic.jpg");
+        welcomeTexture = new Texture("welcome.png");
     }
 
     @Override
