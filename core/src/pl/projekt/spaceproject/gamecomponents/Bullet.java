@@ -1,5 +1,7 @@
 package pl.projekt.spaceproject.gamecomponents;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -14,6 +16,7 @@ public class Bullet extends Image {
     private final static int WIDTH = 3;
     private final static int HEIGHT = 20;
     private final SpaceGame game;
+    private Sound bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/shot.mp3"));
     private Rectangle bounds = new Rectangle((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight());
 
     public Bullet(float x, float y, Type type, String texture, SpaceGame game) {
@@ -23,6 +26,7 @@ public class Bullet extends Image {
         setOrigin(WIDTH / 2f, HEIGHT / 2f);
         setSize(WIDTH, HEIGHT);
         setPosition(x, y);
+        bulletSound.play();
     }
 
     public void alienShot() {
