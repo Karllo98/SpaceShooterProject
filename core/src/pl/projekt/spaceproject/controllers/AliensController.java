@@ -30,13 +30,13 @@ public class AliensController {
         int dice = MathUtils.random(0, 2);
         switch(dice) {
             case 0:
-                type = "alien_a.png";
+                type = "images/alien_a.png";
                 break;
             case 1:
-                type = "alien_b.png";
+                type = "images/alien_b.png";
                 break;
             case 2:
-                type = "alien_c.png";
+                type = "images/alien_c.png";
                 break;
         }
         return type;

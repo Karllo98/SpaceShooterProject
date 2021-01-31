@@ -1,6 +1,5 @@
 package pl.projekt.spaceproject.gamecomponents;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -26,13 +25,17 @@ public class Alien extends Image {
     public void move() {
         //simple movement
         Action first = Actions.moveBy(-100, 0, 3);
-        Action second = Actions.moveBy(0, -100, 3);
+        Action second = Actions.moveBy(0, -150, 3);
         Action third = Actions.moveBy(210, 0, 6);
-        Action fourth = Actions.moveBy(-100, 0, 3);
-        Action fifth = Actions.moveBy(0, -100, 3);
-        Action sixth = Actions.moveBy(-100, 0, 6);
+        Action fourth = Actions.moveBy(-100, 0, 2);
+        Action fifth = Actions.moveBy(0, -150, 2);
+        Action sixth = Actions.moveBy(-100, 0, 4);
+        Action seventh = Actions.moveBy(100, 0, 1);
+        Action eighth = Actions.moveBy(0, -150, 1);
+        Action ninth = Actions.moveBy(100, 0, 2);
+        Action tenth = Actions.moveBy(0, -150, 1);
 
-        addAction(Actions.sequence(first, second, third, fourth, fifth, sixth));
+        addAction(Actions.sequence(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth));
 
     }
 

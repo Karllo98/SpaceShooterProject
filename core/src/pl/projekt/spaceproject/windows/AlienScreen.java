@@ -22,7 +22,7 @@ public class AlienScreen extends ParentScreen{
     private float alienBulletCounter;
     private BulletsController bulletsController;
     private AliensController aliensController;
-    private Label pointsLabel;
+    private Label pointsLabel, healthLabel;
 
     public AlienScreen(SpaceGame game) {
         super(game);
@@ -34,6 +34,33 @@ public class AlienScreen extends ParentScreen{
         initShip();
         initAliensController();
         initPointsLabel();
+        initHealthLabel();
+    }
+
+    private void referee() {
+        for (int i=0; i < stage.getActors().size; i++){
+            Actor actor = stage.getActors().get(i);
+
+            if (actor instanceof Alien) {
+                Alien alien = (Alien) actor;
+                if (alien.getY() <= 0 || ship.health <= 0){
+                    game.setScreen(new LossScreen(game));
+                }
+            }
+        }
+    }
+
+    private void shipCollision() {
+        for (int i=0; i < stage.getActors().size; i++){
+            Actor actorA = stage.getActors().get(i);
+            if (actorA instanceof Bullet) {
+                Bullet bullet = (Bullet) actorA;
+                if(bullet.getBounds().overlaps(ship.getBounds()) && bullet.type == Bullet.Type.ALIEN){
+                    bullet.remove();
+                    --ship.health;
+                }
+            }
+        }
     }
 
     private void aliensCollision() {
@@ -77,6 +104,16 @@ public class AlienScreen extends ParentScreen{
         stage.addActor(pointsLabel);
     }
 
+    private void initHealthLabel() {
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = new BitmapFont();
+        healthLabel = new Label("", labelStyle);
+        healthLabel.setPosition(SpaceGame.WIDTH - 25,775);
+        healthLabel.setColor(Color.RED);
+        healthLabel.setFontScale(2);
+        stage.addActor(healthLabel);
+    }
+
     private void shotShipBullet() {
         shipBulletCounter += Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && shipBulletCounter > 0.25){
@@ -105,12 +142,12 @@ public class AlienScreen extends ParentScreen{
     }
 
     private void initBackground() {
-        backgroundImage = new Image(new Texture("background.jpg"));
+        backgroundImage = new Image(new Texture("images/background.jpg"));
         stage.addActor(backgroundImage);
     }
 
     private void initShip() {
-        ship = new SpaceShip();
+        ship = new SpaceShip(2);
         stage.addActor(ship);
     }
 
@@ -126,9 +163,12 @@ public class AlienScreen extends ParentScreen{
     private void update() {
         stage.act();
         pointsLabel.setText(game.getPoints());
+        healthLabel.setText(ship.health);
         shipMovement();
         shotShipBullet();
         shotAlienBullet();
         aliensCollision();
+        shipCollision();
+        referee();
     }
 }

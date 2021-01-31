@@ -98,8 +98,8 @@ public class LossScreen extends ParentScreen {
     }
 
     private void initTextures() {
-        startButtonTexture = new Texture("start.png");
-        exitButtonTexture = new Texture("exit.png");
+        startButtonTexture = new Texture("images/start.png");
+        exitButtonTexture = new Texture("images/exit.png");
     }
 
     private void drawTextures() {

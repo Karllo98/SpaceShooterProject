@@ -132,7 +132,7 @@ public class MeteorScreen extends ParentScreen {
     }
 
     private void initBackground() {
-        backgroundImage = new Image(new Texture("background.jpg"));
+        backgroundImage = new Image(new Texture("images/background.jpg"));
         stage.addActor(backgroundImage);
     }
 

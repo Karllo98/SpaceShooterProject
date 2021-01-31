@@ -14,12 +14,12 @@ public class BulletsController {
     private void shotBullet(SpaceGame game, Stage stage, SpaceShip ship, String whose, int x, int y) {
         switch(whose) {
             case "alien":
-                Bullet alienBullet = new Bullet(x,y, Bullet.Type.ALIEN ,"alienbullet.png", game);
+                Bullet alienBullet = new Bullet(x,y, Bullet.Type.ALIEN ,"images/alienbullet.png", game);
                 stage.addActor(alienBullet);
                 alienBullet.alienShot();
                 break;
             case "ship":
-                Bullet bullet = new Bullet(x, y, Bullet.Type.SHIP,"shipbullet.png", game);
+                Bullet bullet = new Bullet(x, y, Bullet.Type.SHIP,"images/shipbullet.png", game);
                 stage.addActor(bullet);
                 bullet.shipShot();
                 break;

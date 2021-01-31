@@ -9,7 +9,7 @@ import pl.projekt.spaceproject.SpaceGame;
 
 public class Boost extends Image {
 
-    private final static String BOOST = "boost.png";
+    private final static String BOOST = "images/boost.png";
     private final static int WIDTH = 40;
     private final static int HEIGHT = 40;
     private final SpaceGame game;
