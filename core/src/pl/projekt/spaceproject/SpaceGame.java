@@ -11,7 +11,7 @@ public class SpaceGame extends Game {
     public final static int HEIGHT = 800;
     private boolean paused;
     private int points;
-    private boolean meteorsMode = true;
+    private boolean meteorsMode = false;
 
     @Override
     public void create() {

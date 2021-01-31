@@ -72,7 +72,9 @@ public class LossScreen extends ParentScreen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 game.resetPoints();
-                game.setScreen(new GameScreen(game));
+                if (game.getMode())
+                    game.setScreen(new MeteorScreen(game));
+                else game.setScreen(new AlienScreen(game));
                 return super.touchDown(event, x, y, pointer, button);
             }
         });

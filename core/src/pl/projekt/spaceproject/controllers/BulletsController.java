@@ -7,13 +7,22 @@ import pl.projekt.spaceproject.gamecomponents.SpaceShip;
 
 public class BulletsController {
 
-    public BulletsController(SpaceGame game, Stage stage, SpaceShip ship) {
-        shootBullet(game, stage, ship);
+    public BulletsController(SpaceGame game, Stage stage, SpaceShip ship, String whose, int x, int y) {
+        shotBullet(game, stage, ship, whose, x, y);
     }
 
-    private void shootBullet(SpaceGame game, Stage stage, SpaceShip ship) {
-        Bullet bullet = new Bullet(ship.getX() + ship.getWidth() / 2, game);
-        stage.addActor(bullet);
-        bullet.fly();
+    private void shotBullet(SpaceGame game, Stage stage, SpaceShip ship, String whose, int x, int y) {
+        switch(whose) {
+            case "alien":
+                Bullet alienBullet = new Bullet(x,y, Bullet.Type.ALIEN ,"alienbullet.png", game);
+                stage.addActor(alienBullet);
+                alienBullet.alienShot();
+                break;
+            case "ship":
+                Bullet bullet = new Bullet(x, y, Bullet.Type.SHIP,"shipbullet.png", game);
+                stage.addActor(bullet);
+                bullet.shipShot();
+                break;
+        }
     }
 }

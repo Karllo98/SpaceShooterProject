@@ -9,14 +9,14 @@ import pl.projekt.spaceproject.SpaceGame;
 
 public class Boost extends Image {
 
-    public final static String METEOR = "boost.png";
+    private final static String BOOST = "boost.png";
     private final static int WIDTH = 40;
     private final static int HEIGHT = 40;
     private final SpaceGame game;
     private Rectangle bounds = new Rectangle((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight());
 
     public Boost(int x, int y, SpaceGame game) {
-        super(new Texture(METEOR));
+        super(new Texture(BOOST));
         this.game = game;
         setOrigin(WIDTH / 2f, HEIGHT / 2f);
         setSize(WIDTH, HEIGHT);
@@ -24,7 +24,6 @@ public class Boost extends Image {
     }
 
     public void fall() {
-        //simple movement
         Action first = Actions.rotateBy(0, 3);
 
         Action second = Actions.parallel(Actions.moveBy(0, -1200, 6),

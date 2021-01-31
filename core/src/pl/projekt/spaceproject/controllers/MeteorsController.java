@@ -12,8 +12,6 @@ public class MeteorsController {
 
     private void deployMeteors(SpaceGame game, Stage stage, int amount) {
         for (int i = 1; i <= amount; ++i) {
-            randomXPosition();
-            randomYPosition();
             Meteor meteor = new Meteor(randomXPosition(), randomYPosition(), game);
             stage.addActor(meteor);
             meteor.fall();

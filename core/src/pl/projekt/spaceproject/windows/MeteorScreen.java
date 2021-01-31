@@ -17,7 +17,7 @@ import pl.projekt.spaceproject.gamecomponents.Bullet;
 import pl.projekt.spaceproject.gamecomponents.Meteor;
 import pl.projekt.spaceproject.gamecomponents.SpaceShip;
 
-public class GameScreen extends ParentScreen {
+public class MeteorScreen extends ParentScreen {
   
     private SpaceShip ship;
     private Image backgroundImage;
@@ -27,7 +27,7 @@ public class GameScreen extends ParentScreen {
     private BulletsController bulletsController;
     private Label pointsLabel;
 
-    public GameScreen(SpaceGame game) {
+    public MeteorScreen(SpaceGame game) {
         super(game);
         initialize();
     }
@@ -104,7 +104,7 @@ public class GameScreen extends ParentScreen {
     private void bulletMovement() {
         counter += Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && counter > 0.25){
-            initBulletController();
+            initBulletController("ship", (int) (ship.getX() + ship.getWidth() / 2), 50);
             counter = 0;
         }
     }
@@ -120,7 +120,8 @@ public class GameScreen extends ParentScreen {
         }
     }
 
-    private void initBulletController() {bulletsController = new BulletsController(game, stage, ship);
+    private void initBulletController(String whose, int x, int y) {
+        bulletsController = new BulletsController(game, stage, ship, whose, x, y);
     }
     private void initMeteorsController() {
         meteorsController = new MeteorsController(game, stage, 20);

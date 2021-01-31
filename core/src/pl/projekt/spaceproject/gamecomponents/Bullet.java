@@ -9,22 +9,35 @@ import pl.projekt.spaceproject.SpaceGame;
 
 public class Bullet extends Image {
 
-    public final static String BULLET = "bullet.png";
-    public final static int WIDTH = 3;
+    public enum Type {SHIP, ALIEN;}
+    public final Type type;
+    private final static int WIDTH = 3;
     private final static int HEIGHT = 20;
-    private static final int YPOSITION = 50;
     private final SpaceGame game;
     private Rectangle bounds = new Rectangle((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight());
 
-    public Bullet(float x, SpaceGame game) {
-        super(new Texture(BULLET));
+    public Bullet(float x, float y, Type type, String texture, SpaceGame game) {
+        super(new Texture(texture));
+        this.type = type;
         this.game = game;
         setOrigin(WIDTH / 2f, HEIGHT / 2f);
         setSize(WIDTH, HEIGHT);
-        setPosition(x, YPOSITION);
+        setPosition(x, y);
     }
 
-    public void fly() {
+    public void alienShot() {
+        Action first = Actions.parallel(Actions.moveBy(0, -SpaceGame.HEIGHT, 2));
+        Action second = Actions.run(new Runnable() {
+            @Override
+            public void run() {
+                Bullet.this.remove();
+            }
+        });
+
+        addAction(Actions.sequence(first, second));
+    }
+
+    public void shipShot() {
         Action first = Actions.parallel(Actions.moveBy(0, SpaceGame.HEIGHT, 2));
         Action second = Actions.run(new Runnable() {
             @Override
