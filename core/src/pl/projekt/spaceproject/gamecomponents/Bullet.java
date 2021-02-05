@@ -26,7 +26,7 @@ public class Bullet extends Image {
         setOrigin(WIDTH / 2f, HEIGHT / 2f);
         setSize(WIDTH, HEIGHT);
         setPosition(x, y);
-        bulletSound.play();
+        bulletSound.play(0.5f);
     }
 
     public void alienShot() {

@@ -1,6 +1,7 @@
 package pl.projekt.spaceproject.windows;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -14,10 +15,12 @@ public class LossScreen extends ParentScreen {
 
     private Label titleLabel, scoreLabel, pointsLabel, againLabel, exitLabel, modeLabel;
     private Button againButton, exitButton, modeButton;
+    private Sound lossSound = Gdx.audio.newSound(Gdx.files.internal("sounds/loss.mp3"));
 
     public LossScreen(final SpaceGame game) {
         super(game);
         initialize();
+        lossSound.play(0.5f);
     }
 
     private void initialize() {

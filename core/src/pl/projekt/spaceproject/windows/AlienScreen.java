@@ -2,6 +2,7 @@ package pl.projekt.spaceproject.windows;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -75,6 +76,8 @@ public class AlienScreen extends ParentScreen{
                                 && bullet.type == Bullet.Type.SHIP){
                             bullet.remove();
                             alien.remove();
+                            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/collision.mp3"));
+                            sound.play(0.5f);
                             game.addPoint(1);
                         }
                     }

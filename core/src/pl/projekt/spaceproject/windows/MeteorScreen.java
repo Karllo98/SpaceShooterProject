@@ -2,6 +2,7 @@ package pl.projekt.spaceproject.windows;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -74,6 +75,8 @@ public class MeteorScreen extends ParentScreen {
                         if (bullet.getBounds().overlaps(boost.getBounds()) && bullet.getBounds().getY() < 800) {
                             bullet.remove();
                             boost.remove();
+                            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/boost.mp3"));
+                            sound.play(0.5f);
                             game.addPoint(5);
                         }
                     }
@@ -93,6 +96,8 @@ public class MeteorScreen extends ParentScreen {
                         if (bullet.getBounds().overlaps(meteor.getBounds()) && bullet.getBounds().getY() < 800) {
                             bullet.remove();
                             meteor.remove();
+                            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/collision.mp3"));
+                            sound.play(0.5f);
                             game.addPoint(1);
                         }
                     }
