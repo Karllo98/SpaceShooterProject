@@ -13,7 +13,7 @@ public class Meteor extends Image {
     private final static int WIDTH = 40;
     private final static int HEIGHT = 40;
     private final SpaceGame game;
-    private Rectangle bounds = new Rectangle((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight());
+    private Rectangle bounds = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
 
     public Meteor(int x, int y, SpaceGame game) {
         super(new Texture(METEOR));
@@ -45,7 +45,7 @@ public class Meteor extends Image {
     }
 
     protected void positionChanged() {
-        bounds.setX((int)getX());
-        bounds.setY((int)getY());
+        bounds.setX((int) getX());
+        bounds.setY((int) getY());
     }
 }

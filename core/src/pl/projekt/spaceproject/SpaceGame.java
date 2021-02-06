@@ -1,7 +1,6 @@
 package pl.projekt.spaceproject;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import pl.projekt.spaceproject.windows.WelcomeScreen;
 
 public class SpaceGame extends Game {
@@ -11,6 +10,7 @@ public class SpaceGame extends Game {
     public final static int HEIGHT = 800;
     private boolean paused;
     private int points;
+    private int level = 1;
     private boolean meteorsMode = true;
 
     @Override
@@ -19,7 +19,7 @@ public class SpaceGame extends Game {
     }
 
     public void addPoint(int value) {
-        points +=value;
+        points += value;
     }
 
     public void resetPoints() {
@@ -27,6 +27,7 @@ public class SpaceGame extends Game {
     }
 
     public void setPaused() {
+
     }
 
     public boolean isPaused() {
@@ -47,5 +48,17 @@ public class SpaceGame extends Game {
 
     public int getPoints() {
         return points;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void nextLevel() {
+        ++level;
+    }
+
+    public void resetLevel() {
+        level = 1;
     }
 }

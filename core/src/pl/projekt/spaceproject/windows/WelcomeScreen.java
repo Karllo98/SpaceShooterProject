@@ -18,7 +18,7 @@ public class WelcomeScreen extends ParentScreen {
             public void run() {
                 game.setScreen(new MenuScreen(game));
             }
-        }, 1); //delay in seconds (1s for debug)
+        }, 2);
     }
 
     private void initialize() {

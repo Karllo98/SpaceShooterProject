@@ -6,7 +6,11 @@ import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.gamecomponents.Meteor;
 
 public class MeteorsController {
+
+    private int amount;
+
     public MeteorsController(SpaceGame game, Stage stage, int amount) {
+        this.amount = amount;
         deployMeteors(game, stage, amount);
     }
 
@@ -24,5 +28,13 @@ public class MeteorsController {
 
     private int randomYPosition() {
         return MathUtils.random(SpaceGame.HEIGHT, 1500);
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void reduceAmount() {
+        --amount;
     }
 }

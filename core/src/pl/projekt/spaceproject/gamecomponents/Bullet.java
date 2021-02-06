@@ -12,12 +12,13 @@ import pl.projekt.spaceproject.SpaceGame;
 public class Bullet extends Image {
 
     public enum Type {SHIP, ALIEN;}
+
     public final Type type;
     private final static int WIDTH = 3;
     private final static int HEIGHT = 20;
     private final SpaceGame game;
     private Sound bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/shot.mp3"));
-    private Rectangle bounds = new Rectangle((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight());
+    private Rectangle bounds = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
 
     public Bullet(float x, float y, Type type, String texture, SpaceGame game) {
         super(new Texture(texture));
@@ -58,7 +59,7 @@ public class Bullet extends Image {
     }
 
     protected void positionChanged() {
-        bounds.setX((int)getX());
-        bounds.setY((int)getY());
+        bounds.setX((int) getX());
+        bounds.setY((int) getY());
     }
 }

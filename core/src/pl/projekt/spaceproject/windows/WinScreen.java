@@ -11,13 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import pl.projekt.spaceproject.SpaceGame;
 
-public class LossScreen extends ParentScreen {
+public class WinScreen extends ParentScreen {
 
-    private Label titleLabel, scoreLabel, pointsLabel, againLabel, exitLabel, modeLabel;
-    private Button againButton, exitButton, modeButton;
-    private Sound lossSound = Gdx.audio.newSound(Gdx.files.internal("sounds/loss.mp3"));
+    private Label titleLabel, scoreLabel, pointsLabel, nextLabel, exitLabel, modeLabel;
+    private Button nextButton, exitButton, modeButton;
+    private Sound lossSound = Gdx.audio.newSound(Gdx.files.internal("sounds/win.mp3"));
 
-    public LossScreen(final SpaceGame game) {
+    public WinScreen(final SpaceGame game) {
         super(game);
         initialize();
         lossSound.play(0.5f);
@@ -27,10 +27,10 @@ public class LossScreen extends ParentScreen {
         initTitleLabel();
         initScoreLabel();
         initPointsLabel();
-        initAgainLabel();
+        initNextLabel();
         initModeLabel();
         initExitLabel();
-        initAgainButton();
+        initNextButton();
         initModeButton();
         initExitButton();
     }
@@ -51,12 +51,12 @@ public class LossScreen extends ParentScreen {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = new BitmapFont();
         scoreLabel = new Label("", labelStyle);
-        scoreLabel.setPosition(100, 550);
-        scoreLabel.setColor(Color.RED);
+        scoreLabel.setPosition(150, 550);
+        scoreLabel.setColor(Color.BLUE);
         scoreLabel.setFontScale(4);
         stage.addActor(scoreLabel);
 
-        scoreLabel.setText("YOUR SCORE");
+        scoreLabel.setText("YOU WON!");
     }
 
     private void initPointsLabel() {
@@ -64,21 +64,21 @@ public class LossScreen extends ParentScreen {
         labelStyle.font = new BitmapFont();
         pointsLabel = new Label("", labelStyle);
         pointsLabel.setPosition(275, 450);
-        pointsLabel.setColor(Color.RED);
+        pointsLabel.setColor(Color.BLUE);
         pointsLabel.setFontScale(4);
         stage.addActor(pointsLabel);
     }
 
-    private void initAgainLabel() {
+    private void initNextLabel() {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = new BitmapFont();
-        againLabel = new Label("", labelStyle);
-        againLabel.setPosition(175, 300);
-        againLabel.setColor(Color.YELLOW);
-        againLabel.setFontScale(3);
-        stage.addActor(againLabel);
+        nextLabel = new Label("", labelStyle);
+        nextLabel.setPosition(175, 300);
+        nextLabel.setColor(Color.YELLOW);
+        nextLabel.setFontScale(3);
+        stage.addActor(nextLabel);
 
-        againLabel.setText("TRY AGAIN");
+        nextLabel.setText("NEXT LEVEL");
     }
 
     private void initModeLabel() {
@@ -107,19 +107,18 @@ public class LossScreen extends ParentScreen {
         exitLabel.setText("EXIT");
     }
 
-    private void initAgainButton() {
-        againButton = new Button(new ButtonStyle());
-        againButton.setSize(225, 50);
-        againButton.setPosition(175, 275);
-        againButton.setDebug(false);
+    private void initNextButton() {
+        nextButton = new Button(new ButtonStyle());
+        nextButton.setSize(250, 50);
+        nextButton.setPosition(175, 275);
+        nextButton.setDebug(false);
 
-        stage.addActor(againButton);
+        stage.addActor(nextButton);
 
-        againButton.addListener(new ClickListener() {
+        nextButton.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game.resetPoints();
-                game.resetLevel();
+                game.nextLevel();
                 if (game.getMode())
                     game.setScreen(new MeteorScreen(game));
                 else game.setScreen(new AlienScreen(game));

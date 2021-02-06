@@ -13,7 +13,7 @@ public class SpaceShip extends Image {
     private final static int HEIGHT = 70;
     private final static int STARTINGX = 270;
     private final static int STARTINGY = 0;
-    private Rectangle bounds = new Rectangle((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight());
+    private Rectangle bounds = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
     public int health;
 
     public SpaceShip() {
@@ -36,7 +36,7 @@ public class SpaceShip extends Image {
         addAction(moveAction);
     }
 
-    public void moveRight(){
+    public void moveRight() {
         Action moveAction = Actions.moveBy(5, 0);
         addAction(moveAction);
     }

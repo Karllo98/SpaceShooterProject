@@ -26,7 +26,7 @@ public class MeteorScreen extends ParentScreen {
     private MeteorsController meteorsController;
     private BoostsController boostsController;
     private BulletsController bulletsController;
-    private Label pointsLabel;
+    private Label pointsLabel, levelLabel;
 
     public MeteorScreen(SpaceGame game) {
         super(game);
@@ -39,16 +39,27 @@ public class MeteorScreen extends ParentScreen {
         initMeteorsController();
         initBoostController();
         initPointsLabel();
+        initLevelLabel();
     }
 
     private void initPointsLabel() {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = new BitmapFont();
         pointsLabel = new Label("", labelStyle);
-        pointsLabel.setPosition(20, 775);
+        pointsLabel.setPosition(SpaceGame.WIDTH - 580, SpaceGame.HEIGHT - 25);
         pointsLabel.setColor(Color.YELLOW);
         pointsLabel.setFontScale(2);
         stage.addActor(pointsLabel);
+    }
+
+    private void initLevelLabel() {
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = new BitmapFont();
+        levelLabel = new Label("", labelStyle);
+        levelLabel.setPosition(SpaceGame.WIDTH / 2f - 40, SpaceGame.HEIGHT - 25 );
+        levelLabel.setColor(Color.YELLOW);
+        levelLabel.setFontScale(2);
+        stage.addActor(levelLabel);
     }
 
     private void referee() {
@@ -62,6 +73,8 @@ public class MeteorScreen extends ParentScreen {
                 }
             }
         }
+        if (meteorsController.getAmount() == 0)
+            game.setScreen(new WinScreen(game));
     }
 
     private void boostsCollision() {
@@ -96,6 +109,7 @@ public class MeteorScreen extends ParentScreen {
                         if (bullet.getBounds().overlaps(meteor.getBounds()) && bullet.getBounds().getY() < 800) {
                             bullet.remove();
                             meteor.remove();
+                            meteorsController.reduceAmount();
                             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/collision.mp3"));
                             sound.play(0.5f);
                             game.addPoint(1);
@@ -109,7 +123,7 @@ public class MeteorScreen extends ParentScreen {
     private void bulletMovement() {
         counter += Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && counter > 0.25) {
-            initBulletController("ship", (int) (ship.getX() + ship.getWidth() / 2), 50);
+            initBulletController((int) (ship.getX() + ship.getWidth() / 2));
             counter = 0;
         }
     }
@@ -125,16 +139,16 @@ public class MeteorScreen extends ParentScreen {
         }
     }
 
-    private void initBulletController(String whose, int x, int y) {
-        bulletsController = new BulletsController(game, stage, ship, whose, x, y);
+    private void initBulletController(int x) {
+        bulletsController = new BulletsController(game, stage, ship, "ship", x, 50);
     }
 
     private void initMeteorsController() {
-        meteorsController = new MeteorsController(game, stage, 20);
+        meteorsController = new MeteorsController(game, stage, game.getLevel() * 10);
     }
 
     private void initBoostController() {
-        boostsController = new BoostsController(game, stage, 5);
+        boostsController = new BoostsController(game, stage, game.getLevel() - 1);
     }
 
     private void initBackground() {
@@ -159,6 +173,7 @@ public class MeteorScreen extends ParentScreen {
     private void update() {
         stage.act();
         pointsLabel.setText(game.getPoints());
+        levelLabel.setText("LEVEL " + game.getLevel());
         shipMovement();
         bulletMovement();
         meteorsCollision();

@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import pl.projekt.spaceproject.SpaceGame;
 
-public class MenuScreen extends ParentScreen{
+public class MenuScreen extends ParentScreen {
 
     private Label titleLabel, startLabel, modeLabel, exitLabel, meteorsModeLabel, enemiesModeLabel;
     private Button startButton, modeButton, exitButton, meteorsModeButton, enemiesModeButton;
@@ -80,19 +80,18 @@ public class MenuScreen extends ParentScreen{
 
     private void initStartButton() {
         startButton = new Button(new ButtonStyle());
-        startButton.setSize(150,50);
-        startButton.setPosition(225,500);
+        startButton.setSize(150, 50);
+        startButton.setPosition(225, 500);
         startButton.setDebug(false);
 
         stage.addActor(startButton);
 
-        startButton.addListener(new ClickListener(){
+        startButton.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if(game.getMode()){
+                if (game.getMode()) {
                     game.setScreen(new MeteorScreen(game));
-                }
-                else game.setScreen(new AlienScreen(game));
+                } else game.setScreen(new AlienScreen(game));
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
@@ -100,13 +99,13 @@ public class MenuScreen extends ParentScreen{
 
     private void initModeButton() {
         modeButton = new Button(new ButtonStyle());
-        modeButton.setSize(150,50);
-        modeButton.setPosition(225,350);
+        modeButton.setSize(150, 50);
+        modeButton.setPosition(225, 350);
         modeButton.setDebug(false);
 
         stage.addActor(modeButton);
 
-        modeButton.addListener(new ClickListener(){
+        modeButton.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 initMeteorsModeLabel();
@@ -133,13 +132,13 @@ public class MenuScreen extends ParentScreen{
 
     private void initMeteorsModeButton() {
         meteorsModeButton = new Button(new ButtonStyle());
-        meteorsModeButton.setSize(200,50);
-        meteorsModeButton.setPosition(50,275);
+        meteorsModeButton.setSize(200, 50);
+        meteorsModeButton.setPosition(50, 275);
         meteorsModeButton.setDebug(false);
 
         stage.addActor(meteorsModeButton);
 
-        meteorsModeButton.addListener(new ClickListener(){
+        meteorsModeButton.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 game.setMode(true);
@@ -164,13 +163,13 @@ public class MenuScreen extends ParentScreen{
 
     private void initEnemiesModeButton() {
         enemiesModeButton = new Button(new ButtonStyle());
-        enemiesModeButton.setSize(150,50);
-        enemiesModeButton.setPosition(400,275);
+        enemiesModeButton.setSize(150, 50);
+        enemiesModeButton.setPosition(400, 275);
         enemiesModeButton.setDebug(false);
 
         stage.addActor(enemiesModeButton);
 
-        enemiesModeButton.addListener(new ClickListener(){
+        enemiesModeButton.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 game.setMode(false);
@@ -183,13 +182,13 @@ public class MenuScreen extends ParentScreen{
 
     private void initExitButton() {
         exitButton = new Button(new ButtonStyle());
-        exitButton.setSize(150,50);
-        exitButton.setPosition(225,200);
+        exitButton.setSize(150, 50);
+        exitButton.setPosition(225, 200);
         exitButton.setDebug(false);
 
         stage.addActor(exitButton);
 
-        exitButton.addListener(new ClickListener(){
+        exitButton.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.exit();

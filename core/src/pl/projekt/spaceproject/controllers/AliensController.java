@@ -6,21 +6,24 @@ import pl.projekt.spaceproject.SpaceGame;
 import pl.projekt.spaceproject.gamecomponents.Alien;
 
 public class AliensController {
+
+    private final static int INROW = 8;
+    private int aliens;
+
     public AliensController(SpaceGame game, Stage stage, int amount) {
+        aliens = amount * INROW;
         deployAliens(game, stage, amount);
     }
 
     private void deployAliens(SpaceGame game, Stage stage, int amount) {
-        int dice, counter = 1;
+        boolean dice = MathUtils.randomBoolean();
+        int moveLeft = -100;
+        int moveRight = 100;
         for (int y = 1; y <= amount; ++y) {
-            for (int x = 1; x <= 8; ++x) {
-//                dice = MathUtils.random(2);
-//                if(dice != 1){
-//                    ++counter;
-                    Alien alien = new Alien(50 + 50 * x, 800 - 50 * y, randomType(), game);
-                    stage.addActor(alien);
-                    alien.move();
-//                } else --x;
+            for (int x = 1; x <= INROW; ++x) {
+                Alien alien = new Alien(50 + 50 * x, 800 - 50 * y, randomType(), game);
+                stage.addActor(alien);
+                alien.move(dice);
             }
         }
     }
@@ -28,7 +31,7 @@ public class AliensController {
     private String randomType() {
         String type = null;
         int dice = MathUtils.random(0, 2);
-        switch(dice) {
+        switch (dice) {
             case 0:
                 type = "images/alien_a.png";
                 break;
@@ -40,5 +43,13 @@ public class AliensController {
                 break;
         }
         return type;
+    }
+
+    public int getAmount() {
+        return aliens;
+    }
+
+    public void reduceAmount() {
+        --aliens;
     }
 }
