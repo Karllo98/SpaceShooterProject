@@ -29,19 +29,21 @@ public class Alien extends Image {
             path = 1;
         else path = -1;
 
-        Action first = Actions.moveBy(path * -100, 0, 3);
-        Action second = Actions.moveBy(0, -175, 3);
-        Action third = Actions.moveBy(path * 200, 0, 6);
-        Action fourth = Actions.moveBy(path * -100, 0, 2);
-        Action fifth = Actions.moveBy(0, -175, 2);
-        Action sixth = Actions.moveBy(path * -100, 0, 4);
-        Action seventh = Actions.moveBy(path * 100, 0, 1);
-        Action eighth = Actions.moveBy(0, -200, 1);
-        Action ninth = Actions.moveBy(path * 100, 0, 2);
-        Action tenth = Actions.moveBy(path * -200, 0, 2);
-        Action eleventh = Actions.moveBy(0, -250, 1);
+        Action actions = Actions.sequence(
+                Actions.moveBy(path * -100, 0, 3),
+                Actions.moveBy(0, -175, 3),
+                Actions.moveBy(path * 200, 0, 6),
+                Actions.moveBy(path * -100, 0, 2),
+                Actions.moveBy(0, -175, 2),
+                Actions.moveBy(path * -100, 0, 4),
+                Actions.moveBy(path * 100, 0, 1),
+                Actions.moveBy(0, -200, 1),
+                Actions.moveBy(path * 100, 0, 2),
+                Actions.moveBy(path * -200, 0, 2),
+                Actions.moveBy(0, -250, 1)
+                );
 
-        addAction(Actions.sequence(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh));
+        addAction(Actions.sequence(actions));
 
     }
 
